@@ -29,7 +29,7 @@ class _PageLoginApiState extends State<PageLoginApi> {
       setState(() {
         isLoading = true;
       });
-      http.Response response = await http.post(Uri.parse('http://192.168.100.240/edukasi_server/login.php'),
+      http.Response response = await http.post(Uri.parse('http://172.20.10.7/edukasi_server2/login.php'),
           body: {
             "username":txtUsername.text,
             "password":txtPassword.text,

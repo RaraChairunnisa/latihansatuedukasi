@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latihansatuedukasi/screnn_page/page_register_api.dart';
+import 'package:latihansatuedukasi/screnn_page/page_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const PageRegisterApi(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

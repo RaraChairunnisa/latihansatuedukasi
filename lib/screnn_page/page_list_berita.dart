@@ -39,7 +39,7 @@ class _PageListBeritaState extends State<PageListBerita> {
     try {
       // Berhasil
       http.Response response = await http.get(
-        Uri.parse("http://192.168.100.240/edukasi_server/getBerita.php"),
+        Uri.parse("http://172.20.10.7/edukasi_server2/getBerita.php"),
       );
 
       return modelBeritaFromJson(response.body).data;
@@ -54,10 +54,13 @@ class _PageListBeritaState extends State<PageListBerita> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Aplikasi Berita'),
-        backgroundColor: Colors.cyan,
+        title: Text(
+          'List Berita',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Color.fromRGBO(5, 25, 54, 1.0),
         actions: [
-          TextButton(onPressed: () {}, child: Text('Hi ... ${session.userName}')),
+          TextButton(onPressed: () {}, child: Text('Hi ... ${session.userName}', style: TextStyle(color: Colors.deepOrangeAccent), )),
           // Logout
           IconButton(
             onPressed: () {
@@ -89,7 +92,7 @@ class _PageListBeritaState extends State<PageListBerita> {
                   element.judul!
                       .toLowerCase()
                       .contains(value.toLowerCase()) ||
-                      element.berita!
+                      element.konten!
                           .toLowerCase()
                           .contains(value.toLowerCase()))
                       .toList();
@@ -138,7 +141,7 @@ class _PageListBeritaState extends State<PageListBerita> {
                                     padding: EdgeInsets.all(4),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10),
-                                      child: Image.network('http://192.168.100.240/edukasi_server/gambar_berita/${data.gambar}',
+                                      child: Image.network('http://172.20.10.7/edukasi_server2/gambar_berita/${data.gambar}',
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -153,7 +156,7 @@ class _PageListBeritaState extends State<PageListBerita> {
                                     ),
                                   ),
                                   subtitle: Text(
-                                    '${data.berita}',
+                                    '${data.konten}',
                                     maxLines: 2,
                                     style: TextStyle(
                                       fontSize: 12,

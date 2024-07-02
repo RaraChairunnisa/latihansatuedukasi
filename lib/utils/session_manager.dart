@@ -4,6 +4,12 @@ class SessionManager{
   int? value;
   String? idUser, userName;
 
+  get email => null;
+
+  get nohp => null;
+
+  String? get Nama => null;
+
   //simpan sesi
   Future<void> saveSession(int val, String id, String username) async{
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();

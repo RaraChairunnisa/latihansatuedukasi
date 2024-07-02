@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latihansatuedukasi/screnn_page/page_list_berita.dart';
-import 'package:latihansatuedukasi/screnn_page/page_list_pegawai.dart';
-
+import 'package:latihansatuedukasi/screnn_page/page_profil.dart';
 
 
 class PageBottomNavigationBar extends StatefulWidget {
@@ -11,13 +10,13 @@ class PageBottomNavigationBar extends StatefulWidget {
   State<PageBottomNavigationBar> createState() => _PageBottomNavigationBarState();
 }
 
-class _PageBottomNavigationBarState extends State<PageBottomNavigationBar> with SingleTickerProviderStateMixin{
+class _PageBottomNavigationBarState extends State<PageBottomNavigationBar> with SingleTickerProviderStateMixin {
   late TabController tabController;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    tabController = TabController(length: 4, vsync: this); // Ubah length menjadi 4 karena menambahkan satu tab baru
+    tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -27,36 +26,48 @@ class _PageBottomNavigationBarState extends State<PageBottomNavigationBar> with 
         controller: tabController,
         children: [
           PageListBerita(),
-          PageListPegawai(),
-          //CustomeGrid(),
-          PageListBerita()
-          // Tambahkan PageListBerita sebagai salah satu tab
+          PageProfileUser(),
         ],
       ),
       bottomNavigationBar: BottomAppBar(
         child: TabBar(
-          isScrollable: true,
+          controller: tabController,
           labelColor: Colors.black,
           unselectedLabelColor: Colors.grey,
-          controller: tabController,
-          tabs: const [
-            Tab(
-              text: "List Berita",
-              icon: Icon(Icons.article),
+          tabs: [
+            Tab(  // Custom layout for Tab
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 1),  // Control spacing between icon and text
+                    child: Icon(Icons.article),
+                  ),
+                  Text("List Berita"),
+                ],
+              ),
             ),
-            Tab(
-              text: "List Pegawai", // Tambahkan label untuk tab baru
-              icon: Icon(Icons.group),
+            Tab(  // Custom layout for Tab
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 1),  // Control spacing between icon and text
+                    child: Icon(Icons.person),
+                  ),
+                  Text("Profil User"),
+                ],
+              ),
             ),
-            Tab(
-              text: "Profil User",
-              icon: Icon(Icons.person),
-            ),
-
-
           ],
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
   }
 }
